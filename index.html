@@ -2,8 +2,8 @@
 <html lang="zh-TW">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<title>營運部門激勵機制提案｜SWAG</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VIP Team 激勵試行方案</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=DM+Mono:wght@400;500&display=swap');
 
@@ -21,889 +21,659 @@
     --green-light: #eef7f2;
     --amber: #c07a10;
     --amber-light: #fdf6e8;
+    --purple: #6a3a9a;
+    --purple-light: #f3eefb;
     --border: #e0dfd8;
   }
 
-  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
 
   body {
     background: var(--bg);
     color: var(--ink);
     font-family: 'Noto Sans TC', sans-serif;
-    font-size: 15px;
-    line-height: 1.75;
+    font-size: clamp(13px, 1.4vw, 15px);
+    line-height: 1.8;
     font-weight: 300;
-    max-width: 480px;
-    margin: 0 auto;
   }
 
-  /* ── COVER ── */
-  .cover {
+  /* ── HEADER ── */
+  .header {
     background: var(--ink);
     color: white;
-    padding: 40px 24px 36px;
+    padding: clamp(28px, 5vw, 56px) clamp(20px, 5vw, 64px) clamp(24px, 4vw, 44px);
     position: relative;
     overflow: hidden;
   }
-  .cover::after {
+  .header::after {
     content: '';
     position: absolute;
     right: -40px; top: -40px;
-    width: 200px; height: 200px;
-    border: 30px solid rgba(255,255,255,0.04);
+    width: clamp(140px, 22vw, 280px);
+    height: clamp(140px, 22vw, 280px);
+    border: clamp(18px, 3vw, 36px) solid rgba(255,255,255,0.04);
     border-radius: 50%;
   }
-  .cover-tag {
+  .header-inner { max-width: 860px; margin: 0 auto; position: relative; }
+  .header-tag {
     display: inline-block;
-    border: 1px solid rgba(255,255,255,0.25);
-    color: rgba(255,255,255,0.55);
-    font-size: 10px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    padding: 4px 12px;
-    margin-bottom: 20px;
-    position: relative;
-  }
-  .cover h1 {
-    font-size: 1.75rem;
-    font-weight: 700;
-    line-height: 1.25;
-    margin-bottom: 10px;
-    position: relative;
-  }
-  .cover h1 span { color: #f0a09c; }
-  .cover .sub {
-    font-size: 13px;
+    border: 1px solid rgba(255,255,255,0.2);
     color: rgba(255,255,255,0.5);
-    margin-bottom: 28px;
-    font-weight: 300;
-    position: relative;
+    font-size: clamp(9px, 1vw, 11px);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 3px 12px;
+    margin-bottom: clamp(12px, 2vw, 20px);
   }
-  .cover-chips {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    position: relative;
+  .header h1 {
+    font-size: clamp(1.5rem, 3.5vw, 2.4rem);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 8px;
   }
+  .header h1 span { color: #a8f0c8; }
+  .header .sub {
+    font-size: clamp(12px, 1.3vw, 14px);
+    color: rgba(255,255,255,0.45);
+    margin-bottom: clamp(20px, 3vw, 32px);
+  }
+  .header-chips { display: flex; flex-wrap: wrap; gap: 8px; }
   .chip {
-    font-size: 11px;
-    padding: 4px 12px;
+    font-size: clamp(10px, 1vw, 12px);
+    padding: 3px 12px;
     border-radius: 20px;
     background: rgba(255,255,255,0.08);
-    color: rgba(255,255,255,0.7);
+    color: rgba(255,255,255,0.65);
   }
+  .chip.green { background: rgba(42,122,74,0.3); color: #a8f0c8; }
+  .chip.amber { background: rgba(192,122,16,0.3); color: #f0c878; }
 
   /* ── BODY ── */
-  .body { padding: 0 16px 64px; }
+  .body {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: clamp(24px, 4vw, 52px) clamp(20px, 5vw, 64px) clamp(48px, 8vw, 80px);
+  }
 
   /* ── SECTION ── */
-  .section { margin-top: 40px; }
+  .sec {
+    margin-top: clamp(32px, 5vw, 52px);
+    scroll-margin-top: 20px;
+  }
   .sec-label {
     display: flex;
     align-items: center;
-    gap: 10px;
-    margin-bottom: 16px;
-    padding-bottom: 12px;
+    gap: 12px;
+    margin-bottom: clamp(14px, 2vw, 20px);
+    padding-bottom: clamp(10px, 1.5vw, 14px);
     border-bottom: 1px solid var(--border);
   }
   .sec-num {
     background: var(--ink);
     color: white;
-    font-size: 10px;
+    font-size: clamp(9px, 1vw, 10px);
     font-weight: 700;
     letter-spacing: 1px;
     padding: 3px 8px;
     font-family: 'DM Mono', monospace;
     flex-shrink: 0;
   }
-  .sec-title { font-size: 1rem; font-weight: 700; }
+  .sec-title { font-size: clamp(0.95rem, 1.5vw, 1.1rem); font-weight: 700; }
 
   /* ── CALLOUT ── */
   .callout {
-    padding: 14px 16px;
+    padding: clamp(12px, 1.8vw, 16px) clamp(14px, 2vw, 20px);
     border-left: 3px solid;
     margin-bottom: 12px;
+    font-size: clamp(13px, 1.3vw, 14px);
+    color: var(--ink-mid);
+    line-height: 1.85;
   }
-  .callout.red { background: var(--accent-light); border-color: var(--accent); }
+  .callout strong { color: var(--ink); font-weight: 500; }
   .callout.blue { background: var(--blue-light); border-color: var(--blue); }
   .callout.green { background: var(--green-light); border-color: var(--green); }
   .callout.amber { background: var(--amber-light); border-color: var(--amber); }
+  .callout.red { background: var(--accent-light); border-color: var(--accent); }
   .callout-title {
-    font-size: 10px;
+    font-size: clamp(9px, 1vw, 10px);
     font-weight: 700;
     letter-spacing: 1.5px;
     text-transform: uppercase;
     margin-bottom: 5px;
   }
-  .callout.red .callout-title { color: var(--accent); }
   .callout.blue .callout-title { color: var(--blue); }
   .callout.green .callout-title { color: var(--green); }
   .callout.amber .callout-title { color: var(--amber); }
-  .callout p { font-size: 13.5px; color: var(--ink-mid); line-height: 1.8; }
-  .callout strong { color: var(--ink); font-weight: 500; }
+  .callout.red .callout-title { color: var(--accent); }
 
   /* ── CARD ── */
   .card {
     background: var(--white);
     border: 1px solid var(--border);
-    padding: 16px 18px;
+    padding: clamp(14px, 2vw, 22px) clamp(16px, 2.5vw, 26px);
+    margin-bottom: 12px;
+  }
+  .card h3 {
+    font-size: clamp(13px, 1.3vw, 14px);
+    font-weight: 700;
     margin-bottom: 10px;
   }
-  .card h3 { font-size: 13.5px; font-weight: 700; margin-bottom: 8px; }
-  .card p, .card li { font-size: 13px; color: var(--ink-mid); line-height: 1.8; }
-  .card ul { padding-left: 16px; }
+  .card p, .card li {
+    font-size: clamp(12.5px, 1.3vw, 13.5px);
+    color: var(--ink-mid);
+    line-height: 1.85;
+  }
+  .card ul { padding-left: 18px; }
   .card li { margin-bottom: 4px; }
 
-  /* ── PROBLEM ── */
-  .prob {
-    display: flex;
+  /* ── BASELINE GRID ── */
+  .baseline-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     gap: 12px;
-    padding: 12px 0;
-    border-bottom: 1px solid var(--border);
+    margin-bottom: 12px;
   }
-  .prob:last-child { border-bottom: none; }
-  .prob-icon {
-    flex-shrink: 0;
-    width: 26px; height: 26px;
-    background: var(--accent-light);
-    color: var(--accent);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 12px; font-weight: 700;
-    margin-top: 2px;
-  }
-  .prob-text h4 { font-size: 13.5px; font-weight: 700; margin-bottom: 3px; }
-  .prob-text p { font-size: 13px; color: var(--ink-mid); }
+  @media (max-width: 560px) { .baseline-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 380px) { .baseline-grid { grid-template-columns: 1fr; } }
 
-  /* ── TIER ── */
-  .tier {
+  .baseline-card {
     background: var(--white);
     border: 1px solid var(--border);
     border-top: 3px solid;
-    padding: 18px;
-    margin-bottom: 12px;
+    padding: clamp(12px, 1.8vw, 18px) clamp(12px, 1.8vw, 18px);
   }
-  .tier.t1 { border-top-color: var(--accent); }
-  .tier.t2 { border-top-color: var(--blue); }
-  .tier.t3 { border-top-color: var(--green); }
-  .tier-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 10px;
+  .baseline-card.c1 { border-top-color: var(--green); }
+  .baseline-card.c2 { border-top-color: var(--blue); }
+  .baseline-card.c3 { border-top-color: var(--amber); }
+  .baseline-card.c4 { border-top-color: var(--purple); }
+  .baseline-card.c5 { border-top-color: var(--accent); }
+  .baseline-card.c6 { border-top-color: var(--ink-light); }
+  .b-label {
+    font-size: clamp(9px, 1vw, 11px);
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
   }
-  .tier-lbl { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 3px; }
-  .tier.t1 .tier-lbl { color: var(--accent); }
-  .tier.t2 .tier-lbl { color: var(--blue); }
-  .tier.t3 .tier-lbl { color: var(--green); }
-  .tier h3 { font-size: 14px; font-weight: 700; }
-  .tier-badge {
-    font-size: 10px;
-    padding: 3px 9px;
-    border-radius: 20px;
+  .baseline-card.c1 .b-label { color: var(--green); }
+  .baseline-card.c2 .b-label { color: var(--blue); }
+  .baseline-card.c3 .b-label { color: var(--amber); }
+  .baseline-card.c4 .b-label { color: var(--purple); }
+  .baseline-card.c5 .b-label { color: var(--accent); }
+  .baseline-card.c6 .b-label { color: var(--ink-light); }
+  .b-value {
+    font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+    font-weight: 700;
     font-family: 'DM Mono', monospace;
-    white-space: nowrap;
-    flex-shrink: 0;
-    margin-left: 8px;
-    margin-top: 2px;
+    line-height: 1.1;
+    margin-bottom: 4px;
   }
-  .tier.t1 .tier-badge { background: var(--accent-light); color: var(--accent); }
-  .tier.t2 .tier-badge { background: var(--blue-light); color: var(--blue); }
-  .tier.t3 .tier-badge { background: var(--green-light); color: var(--green); }
-  .tier p { font-size: 13px; color: var(--ink-mid); line-height: 1.8; margin-bottom: 8px; }
-  .tier ul { padding-left: 16px; }
-  .tier li { font-size: 13px; color: var(--ink-mid); margin-bottom: 4px; }
+  .baseline-card.c1 .b-value { color: var(--green); }
+  .baseline-card.c2 .b-value { color: var(--blue); }
+  .baseline-card.c3 .b-value { color: var(--amber); }
+  .baseline-card.c4 .b-value { color: var(--purple); }
+  .baseline-card.c5 .b-value { color: var(--accent); }
+  .baseline-card.c6 .b-value { color: var(--ink-light); }
+  .b-sub { font-size: clamp(11px, 1.1vw, 12px); color: var(--ink-light); }
+  .b-trend {
+    font-size: clamp(10px, 1vw, 11px);
+    margin-top: 6px;
+    padding: 3px 8px;
+    border-radius: 10px;
+    display: inline-block;
+    font-family: 'DM Mono', monospace;
+  }
+  .trend-up { background: var(--green-light); color: var(--green); }
+  .trend-dn { background: var(--accent-light); color: var(--accent); }
+  .trend-na { background: var(--bg); color: var(--ink-light); border: 1px solid var(--border); }
+
+  /* ── TARGET TABLE ── */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: clamp(12px, 1.2vw, 13.5px);
+  }
+  th {
+    background: var(--ink);
+    color: white;
+    padding: clamp(8px, 1.2vw, 11px) clamp(10px, 1.5vw, 16px);
+    text-align: left;
+    font-weight: 500;
+    font-size: clamp(11px, 1.1vw, 12px);
+    letter-spacing: 0.5px;
+  }
+  td {
+    padding: clamp(9px, 1.2vw, 12px) clamp(10px, 1.5vw, 16px);
+    border-bottom: 1px solid var(--border);
+    color: var(--ink-mid);
+    vertical-align: top;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:nth-child(even) td { background: #fafaf8; }
+  td strong { color: var(--ink); font-weight: 500; }
+  td .target { color: var(--green); font-family: 'DM Mono', monospace; font-weight: 500; }
+  td .baseline-val { color: var(--ink-light); font-family: 'DM Mono', monospace; font-size: 11px; }
+  td .weight { font-size: 11px; font-family: 'DM Mono', monospace; color: var(--blue); }
 
   /* ── FORMULA ── */
   .formula {
     background: var(--ink);
     color: #a8f0c8;
     font-family: 'DM Mono', monospace;
-    font-size: 12px;
-    padding: 14px 16px;
+    font-size: clamp(11px, 1.1vw, 13px);
+    padding: clamp(12px, 1.8vw, 18px) clamp(14px, 2vw, 20px);
     line-height: 2;
     margin: 10px 0;
     overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
     white-space: pre;
   }
-  .fc { color: #4a6a4a; }
-
-  /* ── METRICS ROW ── */
-  .metric-row {
-    background: var(--white);
-    border: 1px solid var(--border);
-    border-left: 3px solid;
-    padding: 12px 14px;
-    margin-bottom: 8px;
-    display: flex;
-    gap: 12px;
-    align-items: flex-start;
-  }
-  .metric-row.t1 { border-left-color: var(--accent); }
-  .metric-row.t2 { border-left-color: var(--blue); }
-  .metric-row.t3 { border-left-color: var(--green); }
-  .metric-name { font-size: 13px; font-weight: 700; min-width: 0; flex: 1; }
-  .metric-desc { font-size: 12px; color: var(--ink-mid); margin-top: 2px; }
-  .metric-tag {
-    flex-shrink: 0;
-    font-size: 10px;
-    padding: 2px 8px;
-    border-radius: 10px;
-    margin-top: 2px;
-  }
-  .metric-row.t1 .metric-tag { background: var(--accent-light); color: var(--accent); }
-  .metric-row.t2 .metric-tag { background: var(--blue-light); color: var(--blue); }
-  .metric-row.t3 .metric-tag { background: var(--green-light); color: var(--green); }
+  .fc { color: #4a6a5a; }
 
   /* ── PERF GRID ── */
   .perf-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 8px;
-    margin: 10px 0;
+    margin: 12px 0;
   }
+  @media (max-width: 400px) { .perf-grid { grid-template-columns: repeat(2, 1fr); } }
   .perf-card {
-    padding: 12px 8px;
+    padding: clamp(10px, 1.5vw, 16px) 8px;
     text-align: center;
     border: 1px solid var(--border);
   }
-  .perf-card .grade { font-size: 1.4rem; font-weight: 700; margin-bottom: 2px; }
-  .perf-card .mult { font-family: 'DM Mono', monospace; font-size: 12px; font-weight: 500; margin-bottom: 3px; }
-  .perf-card .desc { font-size: 10px; color: var(--ink-light); line-height: 1.4; }
+  .grade { font-size: clamp(1.3rem, 2.5vw, 1.7rem); font-weight: 700; margin-bottom: 2px; }
+  .mult { font-family: 'DM Mono', monospace; font-size: clamp(11px, 1.1vw, 13px); font-weight: 500; margin-bottom: 3px; }
+  .pdesc { font-size: clamp(10px, 1vw, 11px); color: var(--ink-light); line-height: 1.4; }
   .ps { background: #fff9e6; } .ps .grade { color: var(--amber); }
   .pa { background: var(--green-light); } .pa .grade { color: var(--green); }
   .pb { background: var(--blue-light); } .pb .grade { color: var(--blue); }
   .pc { background: #fafafa; } .pc .grade { color: var(--ink-light); }
 
-  /* ── FLOW ── */
-  .flow {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-    margin: 12px 0;
-  }
-  .flow-step {
+  /* ── EXAMPLE ── */
+  .example-box {
     background: var(--white);
     border: 1px solid var(--border);
-    padding: 10px 14px;
-    font-size: 13px;
-    font-weight: 500;
+    overflow: hidden;
   }
-  .flow-step small {
-    display: block;
-    font-size: 11px;
-    color: var(--ink-light);
-    font-weight: 300;
-    margin-top: 1px;
-  }
-  .flow-arr {
-    text-align: center;
-    color: var(--accent);
-    font-size: 16px;
-    padding: 2px 0;
-  }
-
-  /* ── TIMELINE ── */
-  .tl-item {
-    display: flex;
-    gap: 14px;
-    margin-bottom: 0;
-  }
-  .tl-left {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    flex-shrink: 0;
-    width: 28px;
-  }
-  .tl-dot {
-    width: 9px; height: 9px;
-    background: var(--accent);
-    border-radius: 50%;
-    margin-top: 5px;
-    flex-shrink: 0;
-  }
-  .tl-line {
-    width: 1px;
-    flex-grow: 1;
-    background: var(--border);
-    margin: 3px 0;
-  }
-  .tl-item:last-child .tl-line { display: none; }
-  .tl-body { padding-bottom: 20px; flex: 1; min-width: 0; }
-  .tl-phase {
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 2px;
-  }
-  .tl-body h4 { font-size: 14px; font-weight: 700; margin-bottom: 5px; }
-  .tl-body p { font-size: 13px; color: var(--ink-mid); }
-  .tl-body ul { padding-left: 14px; margin-top: 4px; }
-  .tl-body li { font-size: 13px; color: var(--ink-mid); margin-bottom: 3px; }
-
-  /* ── RISK ── */
-  .risk-item {
-    display: flex;
-    gap: 10px;
-    padding: 12px 0;
-    border-bottom: 1px solid var(--border);
-  }
-  .risk-item:last-child { border-bottom: none; }
-  .risk-tag {
-    flex-shrink: 0;
-    font-size: 10px;
+  .example-header {
+    background: var(--green);
+    color: white;
+    padding: clamp(10px, 1.5vw, 14px) clamp(14px, 2vw, 20px);
+    font-size: clamp(11px, 1.2vw, 13px);
     font-weight: 700;
     letter-spacing: 0.5px;
-    padding: 3px 7px;
-    height: fit-content;
-    margin-top: 2px;
-    white-space: nowrap;
   }
-  .rh { background: var(--accent-light); color: var(--accent); }
-  .rm { background: var(--amber-light); color: var(--amber); }
-  .rl { background: var(--green-light); color: var(--green); }
-  .risk-body h4 { font-size: 13.5px; font-weight: 600; margin-bottom: 3px; }
-  .risk-body p { font-size: 13px; color: var(--ink-mid); }
+  .example-body { padding: clamp(14px, 2vw, 20px); }
 
-  /* ── CONFIRM TABLE ── */
-  .confirm-item {
-    background: var(--white);
-    border: 1px solid var(--border);
-    padding: 14px 16px;
-    margin-bottom: 8px;
-  }
-  .confirm-item .ci-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 8px;
-    margin-bottom: 6px;
-  }
-  .confirm-item h4 { font-size: 13.5px; font-weight: 700; flex: 1; }
-  .confirm-item .ci-scope {
-    font-size: 10px;
-    padding: 2px 8px;
-    background: var(--blue-light);
-    color: var(--blue);
-    border-radius: 10px;
-    white-space: nowrap;
-    flex-shrink: 0;
-  }
-  .confirm-item .ci-suggest {
-    font-size: 12.5px;
-    color: var(--ink-mid);
-    padding: 8px 10px;
-    background: var(--bg);
-    border-left: 2px solid var(--border);
-  }
-  .confirm-item .ci-suggest strong { color: var(--ink); font-weight: 500; }
+  /* ── TIMELINE ── */
+  .tl-item { display: flex; gap: 14px; }
+  .tl-left { display: flex; flex-direction: column; align-items: center; flex-shrink: 0; width: 28px; }
+  .tl-dot { width: 9px; height: 9px; background: var(--green); border-radius: 50%; margin-top: 5px; flex-shrink: 0; }
+  .tl-line { width: 1px; flex-grow: 1; background: var(--border); margin: 4px 0; }
+  .tl-item:last-child .tl-line { display: none; }
+  .tl-body { padding-bottom: 20px; flex: 1; min-width: 0; }
+  .tl-phase { font-size: clamp(9px, 1vw, 10px); font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--green); margin-bottom: 2px; }
+  .tl-body h4 { font-size: clamp(13.5px, 1.4vw, 15px); font-weight: 700; margin-bottom: 5px; }
+  .tl-body p { font-size: clamp(12.5px, 1.3vw, 13.5px); color: var(--ink-mid); line-height: 1.8; }
+  .tl-body ul { padding-left: 16px; margin-top: 4px; }
+  .tl-body li { font-size: clamp(12.5px, 1.3vw, 13.5px); color: var(--ink-mid); margin-bottom: 3px; }
 
   /* ── SUMMARY ── */
   .summary {
     background: var(--ink);
     color: white;
-    padding: 24px 18px;
-    margin-top: 40px;
+    padding: clamp(20px, 3vw, 32px);
+    margin-top: clamp(28px, 4vw, 44px);
   }
-  .summary h3 { font-size: 14px; font-weight: 700; margin-bottom: 14px; color: white; }
-  .sum-row {
-    padding: 9px 0;
-    border-bottom: 1px solid rgba(255,255,255,0.08);
-    font-size: 13px;
+  .summary h3 { font-size: clamp(12px, 1.3vw, 14px); font-weight: 700; margin-bottom: 14px; }
+  .sum-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0; }
+  @media (max-width: 480px) { .sum-grid { grid-template-columns: 1fr; } }
+  .sum-row { padding: clamp(9px, 1.3vw, 12px) 0; border-bottom: 1px solid rgba(255,255,255,0.07); }
+  .sum-row:nth-child(odd) { padding-right: clamp(12px, 2vw, 20px); }
+  .sum-row:nth-child(even) { padding-left: clamp(12px, 2vw, 20px); border-left: 1px solid rgba(255,255,255,0.07); }
+  @media (max-width: 480px) {
+    .sum-row:nth-child(odd), .sum-row:nth-child(even) { padding-left: 0; padding-right: 0; border-left: none; }
   }
-  .sum-row:last-child { border-bottom: none; }
-  .sum-row .label { color: rgba(255,255,255,0.45); font-size: 11px; margin-bottom: 2px; }
-  .sum-row .value { color: white; font-weight: 400; }
+  .sum-label { font-size: clamp(9px, 1vw, 10px); color: rgba(255,255,255,0.4); margin-bottom: 2px; letter-spacing: 0.5px; }
+  .sum-value { font-size: clamp(12px, 1.2vw, 13.5px); color: white; }
 
-  /* ── FOOTNOTE ── */
-  .fn {
-    font-size: 11.5px;
-    color: var(--ink-light);
-    margin-top: 6px;
-    padding-left: 10px;
-    border-left: 2px solid var(--border);
-  }
+  .fn { font-size: clamp(11px, 1.1vw, 12px); color: var(--ink-light); margin-top: 8px; padding-left: 10px; border-left: 2px solid var(--border); }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  @media (max-width: 520px) { .two-col { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body>
 
-<!-- COVER -->
-<div class="cover">
-  <div class="cover-tag">Internal Proposal · Draft v1.3</div>
-  <h1>營運部門<br><span>激勵機制設計</span>提案</h1>
-  <p class="sub">建立透明、可計算、導向業務增長的獎金分配機制</p>
-  <div class="cover-chips">
-    <div class="chip">VIP Team</div>
-    <div class="chip">CRM &amp; Campaign Team</div>
-    <div class="chip">Data &amp; Analytics Team</div>
+<div class="header">
+  <div class="header-inner">
+    <div class="header-tag">Pilot Plan · VIP Team</div>
+    <h1>VIP Team<br><span>激勵試行方案</span></h1>
+    <p class="sub">基於 Mixpanel 真實數據設計，可直接上線執行</p>
+    <div class="header-chips">
+      <div class="chip">基於真實 baseline</div>
+      <div class="chip green">目標明確可計算</div>
+      <div class="chip amber">看效果再決定期限</div>
+    </div>
   </div>
 </div>
 
 <div class="body">
 
-  <!-- 01 現況與問題 -->
-  <div class="section">
+  <!-- 01 Baseline -->
+  <div class="sec">
     <div class="sec-label">
       <div class="sec-num">01</div>
-      <div class="sec-title">現況與核心問題</div>
-    </div>
-
-    <div class="callout red">
-      <div class="callout-title">核心痛點</div>
-      <p>目前年終獎金<strong>無公開規則、無量化依據</strong>，員工無法預期行為與回報的關聯，激勵效果有限，且容易引發公平性疑慮。</p>
-    </div>
-
-    <div class="card">
-      <div class="prob">
-        <div class="prob-icon">①</div>
-        <div class="prob-text">
-          <h4>行為與回報脫鉤</h4>
-          <p>員工不知道做哪些事、做多好會影響獎金，缺乏清楚的努力方向。</p>
-        </div>
-      </div>
-      <div class="prob">
-        <div class="prob-icon">②</div>
-        <div class="prob-text">
-          <h4>主管分錢靠感覺，員工覺得靠關係</h4>
-          <p>無明確規則下，任何結果都可能被質疑，造成信任損耗。</p>
-        </div>
-      </div>
-      <div class="prob">
-        <div class="prob-icon">③</div>
-        <div class="prob-text">
-          <h4>三組貢獻難比較</h4>
-          <p>三個 Team 工作性質不同，現有機制無法反映各組實際貢獻差異。</p>
-        </div>
-      </div>
-      <div class="prob">
-        <div class="prob-icon">④</div>
-        <div class="prob-text">
-          <h4>無法牽引戰略重點</h4>
-          <p>公司的優先級無法透過機制傳遞到每個員工的日常行為。</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- 02 設計原則 -->
-  <div class="section">
-    <div class="sec-label">
-      <div class="sec-num">02</div>
-      <div class="sec-title">設計原則</div>
+      <div class="sec-title">Baseline 現況數據</div>
     </div>
 
     <div class="callout blue">
-      <div class="callout-title">有創造才有分享</div>
-      <p>獎金池來自業績增量，公司業績越好，員工分享越多。</p>
+      <div class="callout-title">數據來源</div>
+      查詢時間：2026-04-29 ｜ 來源：Mixpanel（SWAG project 1262196）｜ 月升級趨勢取 Feb~Apr 均值
     </div>
-    <div class="callout green">
-      <div class="callout-title">規則透明、可自行計算</div>
-      <p>每位員工能根據公開規則自行估算獎金，消除黑箱感。</p>
+
+    <div class="baseline-grid">
+      <div class="baseline-card c1">
+        <div class="b-label">週活 VIP</div>
+        <div class="b-value">33,094</div>
+        <div class="b-sub">當週有上線的 VIP 用戶</div>
+      </div>
+      <div class="baseline-card c2">
+        <div class="b-label">Lv.1 佔比</div>
+        <div class="b-value">68.1%</div>
+        <div class="b-sub">22,546 人，升級空間最大</div>
+      </div>
+      <div class="baseline-card c3">
+        <div class="b-label">月升級人數</div>
+        <div class="b-value">~11,000</div>
+        <div class="b-sub">Feb 12,079 / Mar 11,508 / Apr 10,564</div>
+        <div class="b-trend trend-dn">↘ 微降趨勢</div>
+      </div>
+      <div class="baseline-card c4">
+        <div class="b-label">Lv.10+ 人數</div>
+        <div class="b-value">9,757</div>
+        <div class="b-sub">週活中 Lv.10 以上（29.4%）</div>
+      </div>
+      <div class="baseline-card c5">
+        <div class="b-label">Lv.30+ 佔比</div>
+        <div class="b-value">3.3%</div>
+        <div class="b-sub">1,097 人，高價值用戶</div>
+      </div>
+      <div class="baseline-card c6">
+        <div class="b-label">VIP 月留存率</div>
+        <div class="b-value">TBD</div>
+        <div class="b-sub">需後台計算，非 Mixpanel 事件</div>
+        <div class="b-trend trend-na">手動建立</div>
+      </div>
     </div>
+
     <div class="callout amber">
-      <div class="callout-title">指哪打哪、貢獻有差距</div>
-      <p>激勵設計與公司戰略掛鉤，不同貢獻的員工獲得不同回報。</p>
+      <div class="callout-title">留存率說明</div>
+      VIP 月留存率無法直接從 Mixpanel 事件層級查詢，建議 VIP Team 每月月初手動計算：<strong>上月 VIP 總人數 → 本月仍維持 VIP 等級的人數 ÷ 上月人數</strong>。本月作為首月，建立第一個 baseline 數值後，下個月起納入考核。
     </div>
   </div>
 
-  <!-- 03 三層架構 -->
-  <div class="section">
+  <!-- 02 指標與目標 -->
+  <div class="sec">
+    <div class="sec-label">
+      <div class="sec-num">02</div>
+      <div class="sec-title">試行指標與目標設定</div>
+    </div>
+
+    <div class="callout green">
+      <div class="callout-title">目標設定原則</div>
+      書中建議：目標設定在 baseline 的 <strong>110~120%</strong> 之間——「跳一跳夠得著」。太高讓人放棄，太低沒有激勵效果。月升級人數已有微降趨勢，目標設定需反轉趨勢而非維持現狀。
+    </div>
+
+    <table>
+      <tr>
+        <th>指標</th>
+        <th>Baseline</th>
+        <th>試行目標</th>
+        <th>權重</th>
+        <th>計算說明</th>
+      </tr>
+      <tr>
+        <td><strong>VIP 月留存率</strong><br><span style="font-size:11px;color:var(--ink-light);">最核心指標，防止流失</span></td>
+        <td><span class="baseline-val">TBD<br>首月建立</span></td>
+        <td><span class="target">baseline + 3pp</span></td>
+        <td><span class="weight">40%</span></td>
+        <td>首季以建立 baseline 為主，第二季起正式考核</td>
+      </tr>
+      <tr>
+        <td><strong>Lv.1 → Lv.10+ 月升級人數</strong><br><span style="font-size:11px;color:var(--ink-light);">反轉微降趨勢</span></td>
+        <td><span class="baseline-val">~11,000 人/月<br>（Feb~Apr 均值）</span></td>
+        <td><span class="target">12,500 人/月</span></td>
+        <td><span class="weight">35%</span></td>
+        <td>比 Feb 高點 12,079 再多 3.5%，反轉下降趨勢</td>
+      </tr>
+      <tr>
+        <td><strong>Lv.30+ 週活佔比</strong><br><span style="font-size:11px;color:var(--ink-light);">深耕高價值用戶</span></td>
+        <td><span class="baseline-val">3.3%<br>（1,097 / 33,094）</span></td>
+        <td><span class="target">4.0%</span></td>
+        <td><span class="weight">25%</span></td>
+        <td>提升 0.7pp，代表約多 230 人進入高階</td>
+      </tr>
+    </table>
+
+    <p class="fn">升級人數目前 Mixpanel 只能查到 level.upgraded 總數，無法確認是否從 Lv.1 升到 Lv.10+。建議 VIP Team 確認 level.upgraded 事件是否有 before/after level 屬性，若有可直接過濾；若無，以總升級人數代替。</p>
+  </div>
+
+  <!-- 03 組績效係數 -->
+  <div class="sec">
     <div class="sec-label">
       <div class="sec-num">03</div>
-      <div class="sec-title">三層激勵架構</div>
+      <div class="sec-title">組績效係數計算</div>
     </div>
 
-    <div class="flow">
-      <div class="flow-step">公司業績指標<small>付費收入 / 淨利率</small></div>
-      <div class="flow-arr">↓</div>
-      <div class="flow-step">部門獎金池<small>Layer 1</small></div>
-      <div class="flow-arr">↓</div>
-      <div class="flow-step">三組分配<small>Layer 2</small></div>
-      <div class="flow-arr">↓</div>
-      <div class="flow-step">個人獎金<small>Layer 3</small></div>
-    </div>
+    <div class="formula">組績效係數 = 留存率達成率 × 40%
+             + 升級人數達成率 × 35%
+             + Lv.30+ 佔比達成率 × 25%
 
-    <!-- Layer 1 -->
-    <div class="tier t1">
-      <div class="tier-top">
-        <div>
-          <div class="tier-lbl">Layer 1</div>
-          <h3>部門獎金池</h3>
-        </div>
-        <div class="tier-badge">公司層級</div>
-      </div>
-
-      <p>以兩個純財務指標驅動獎金池，涵蓋規模與效益兩個面向。</p>
-
-      <div class="formula">部門獎金池 = 基準獎金包
-  × (1 + 業績綜合增長率)
-
-業績綜合增長率
-  = 付費收入增長率 × 60%
-  + 淨利率達成率   × 40%
+各指標達成率 = 實際值 ÷ 目標值（上限 1.3，超額不無限累加）
 <span class="fc">
-付費收入 = 用戶鑽石消耗換算法幣總額
-淨利率達成率 = 實際淨利率 ÷ 目標淨利率</span></div>
+例：留存率達標 100% → 係數貢獻 0.40
+    升級達標 115%  → 係數貢獻 0.40（≥1.0 取 1.0×0.35=0.35 → 實際 1.15×0.35=0.40）
+    Lv.30+ 達標 90% → 係數貢獻 0.23
+    組績效係數 = 0.40 + 0.40 + 0.23 = 1.03（超標 3%）</span></div>
 
-      <p class="fn">基準獎金包 = 上一年度部門實際獎金總額，首年以年薪 15~20% 估算。</p>
-    </div>
-
-    <!-- Layer 2 -->
-    <div class="tier t2">
-      <div class="tier-top">
-        <div>
-          <div class="tier-lbl">Layer 2</div>
-          <h3>三組分配</h3>
-        </div>
-        <div class="tier-badge">組別層級</div>
+    <div class="two-col">
+      <div class="callout green" style="margin-bottom:0;">
+        <div class="callout-title">係數 ≥ 1.0</div>
+        超標，組內獎金池放大，員工分到更多
       </div>
-
-      <p>三組分享比例 <strong>4 : 4 : 2</strong>，各組考核指標完全獨立不重疊。</p>
-
-      <p style="font-size:12px; font-weight:700; color:var(--accent); margin: 10px 0 6px; letter-spacing:1px; text-transform:uppercase;">VIP Team — 40%</p>
-      <div class="metric-row t1">
-        <div class="metric-info">
-          <div class="metric-name">VIP 月留存率</div>
-          <div class="metric-desc">上月 VIP 本月仍維持等級的比例（最核心，防止流失）</div>
-        </div>
+      <div class="callout amber" style="margin-bottom:0;">
+        <div class="callout-title">係數 &lt; 1.0</div>
+        未達標，組內獎金池縮小，但不低於 0.7 下限
       </div>
-      <div class="metric-row t1">
-        <div class="metric-info">
-          <div class="metric-name">VIP 升級人數（Lv.1 → Lv.10+）</div>
-          <div class="metric-desc">從 VIP 1 升至 VIP 10 以上的人數（現有 68% 在 Lv.1，升級空間最大）</div>
-        </div>
-      </div>
-      <div class="metric-row t1">
-        <div class="metric-info">
-          <div class="metric-name">高階 VIP 佔比（Lv.30+）</div>
-          <div class="metric-desc">Lv.30 以上佔總 VIP 活躍人數的比例（目前僅 4.4%，深耕方向）</div>
-        </div>
-      </div>
-      <div class="metric-row t1">
-        <div class="metric-info">
-          <div class="metric-name">VIP 總活躍人數</div>
-          <div class="metric-desc">當月有上線的 VIP 用戶數（基本盤監控，目前約 33k／週）</div>
-        </div>
-      </div>
-
-      <p style="font-size:12px; font-weight:700; color:var(--blue); margin: 16px 0 6px; letter-spacing:1px; text-transform:uppercase;">CRM &amp; Campaign Team — 40%</p>
-      <div class="metric-row t2">
-        <div class="metric-info">
-          <div class="metric-name">整體付費轉換率</div>
-          <div class="metric-desc">付費 DAU ÷ DAU（含非VIP用戶）</div>
-        </div>
-      </div>
-      <div class="metric-row t2">
-        <div class="metric-info">
-          <div class="metric-name">新用戶首次付費率</div>
-          <div class="metric-desc">當月新註冊中完成首次付費的比例</div>
-        </div>
-      </div>
-      <div class="metric-row t2">
-        <div class="metric-info">
-          <div class="metric-name">活動收入提升比</div>
-          <div class="metric-desc">活動期間 vs 非活動期的日均收入比</div>
-        </div>
-      </div>
-      <div class="metric-row t2">
-        <div class="metric-info">
-          <div class="metric-name">用戶 30 日留存率</div>
-          <div class="metric-desc">整體用戶（非VIP）的月留存表現</div>
-        </div>
-      </div>
-
-      <p style="font-size:12px; font-weight:700; color:var(--green); margin: 16px 0 6px; letter-spacing:1px; text-transform:uppercase;">Data &amp; Analytics Team — 20%</p>
-      <div class="metric-row t3">
-        <div class="metric-info">
-          <div class="metric-name">比例聯動</div>
-          <div class="metric-desc">隨兩組業務成長自動連動，不單獨考核業績，避免與業務組對立</div>
-        </div>
-      </div>
-      <div class="metric-row t3">
-        <div class="metric-info">
-          <div class="metric-name">內部服務滿意度</div>
-          <div class="metric-desc">由 VIP Team 與 CRM Team 評分（0.9 ~ 1.1 係數調節）</div>
-        </div>
-      </div>
-
-      <div class="formula" style="margin-top:14px;">各組獎金 = 部門獎金池
-  × 分享比例 × 組績效係數
-
-Data Team 獎金
-  = (VIP人均 + CRM人均) ÷ 2
-  × Data人數
-  × 滿意度係數</div>
-
-      <div class="callout blue" style="margin-top:12px; margin-bottom:0;">
-        <div class="callout-title">邊界原則</div>
-        <p>VIP Team 只看 VIP 用戶數字（留存、升級、高階佔比），CRM &amp; Campaign Team 看整體平台，<strong>指標刻意不重疊，各自負責</strong>。</p>
-      </div>
-    </div>
-
-    <!-- Layer 3 -->
-    <div class="tier t3">
-      <div class="tier-top">
-        <div>
-          <div class="tier-lbl">Layer 3</div>
-          <h3>個人分配</h3>
-        </div>
-        <div class="tier-badge">個人層級</div>
-      </div>
-
-      <p>使用<strong>貢獻權重法</strong>，依個人貢獻分比例分配，而非人頭均分。</p>
-
-      <div class="formula">個人獎金
-  = (個人貢獻分 ÷ 組內總貢獻分)
-  × 組獎金包
-
-個人貢獻分
-  = 崗位係數 × 績效係數 × 出勤係數</div>
-
-      <div class="perf-grid">
-        <div class="perf-card ps">
-          <div class="grade">S</div>
-          <div class="mult">× 1.5</div>
-          <div class="desc">超出<br>預期</div>
-        </div>
-        <div class="perf-card pa">
-          <div class="grade">A</div>
-          <div class="mult">× 1.0</div>
-          <div class="desc">達成<br>預期</div>
-        </div>
-        <div class="perf-card pb">
-          <div class="grade">B</div>
-          <div class="mult">× 0.6</div>
-          <div class="desc">部分<br>達成</div>
-        </div>
-        <div class="perf-card pc">
-          <div class="grade">C</div>
-          <div class="mult">× 0</div>
-          <div class="desc">未<br>達成</div>
-        </div>
-      </div>
-
-      <p class="fn">績效評定：直屬主管 60% + 跨組 peer review 40%，主管須附具體事例，不允許空白評語。</p>
     </div>
   </div>
 
-  <!-- 04 補充激勵 -->
-  <div class="section">
+  <!-- 04 個人分配 -->
+  <div class="sec">
     <div class="sec-label">
       <div class="sec-num">04</div>
-      <div class="sec-title">補充激勵（選配）</div>
+      <div class="sec-title">個人獎金分配</div>
     </div>
 
-    <div class="card">
-      <h3>🎯 即時專項獎金</h3>
-      <p>從獎金池預留 <strong>10~15%</strong>，針對重大活動達標或 VIP 爆發性成長，事件驅動即發放，不等年底。</p>
+    <p style="font-size:clamp(13px,1.3vw,14px); color:var(--ink-mid); margin-bottom:14px;">VIP 組無 L5，全員走貢獻權重法。</p>
+
+    <div class="formula">個人獎金 = (個人貢獻分 ÷ 組內總貢獻分) × VIP Team 獎金包
+
+個人貢獻分 = 崗位係數 × 績效係數 × 出勤係數
+<span class="fc">
+崗位係數：L4.2 = 1.7 ／ L4 = 1.5 ／ L3.2 = 1.2 ／ L3 = 1.0 ／ L2 = 0.7
+出勤係數：全勤 = 1.0，依實際比例調整</span></div>
+
+    <div class="perf-grid">
+      <div class="perf-card ps">
+        <div class="grade">S</div><div class="mult">× 1.5</div>
+        <div class="pdesc">超出預期<br>部門 S 上限 20%</div>
+      </div>
+      <div class="perf-card pa">
+        <div class="grade">A</div><div class="mult">× 1.0</div>
+        <div class="pdesc">達成預期<br>無上限</div>
+      </div>
+      <div class="perf-card pb">
+        <div class="grade">B</div><div class="mult">× 0.6</div>
+        <div class="pdesc">部分達成</div>
+      </div>
+      <div class="perf-card pc">
+        <div class="grade">C</div><div class="mult">× 0</div>
+        <div class="pdesc">未達成</div>
+      </div>
     </div>
-    <div class="card">
-      <h3>🏆 榮譽激勵</h3>
-      <p>每季度各組票選，不限名額比例（建議 30~50%），公開表彰 + 記入個人榮譽檔案。成本低、對自我價值感影響大。</p>
-    </div>
-    <div class="card">
-      <h3>🌱 土地肥力獎</h3>
-      <p>從獎金池預留 <strong>10%</strong>，獎勵對部門長期能力有貢獻但當期無法量化的工作（如數據建設、流程優化）。</p>
+
+    <!-- 試算示例 -->
+    <div class="example-box">
+      <div class="example-header">📊 試算示例：組達標情境（假設數字）</div>
+      <div class="example-body">
+        <div class="formula">【前提假設】
+基準獎金包：$600,000（部門）
+VIP Team 分配（40%）= $240,000
+扣除 LTI（15%）後即時池 = $204,000
+
+組績效係數：1.05（超標 5%）
+VIP Team 可分配池 = $204,000 × 1.05 = $214,200
+
+【組成員】3 人
+L4（崗位 1.5）× A（績效 1.0）× 全勤 = 1.50
+L3.2（崗位 1.2）× S（績效 1.5）× 全勤 = 1.80
+L3（崗位 1.0）× A（績效 1.0）× 全勤 = 1.00
+總貢獻分 = 4.30
+
+【個人獎金】
+L4  · A：1.50 ÷ 4.30 × $214,200 = $74,721
+L3.2 · S：1.80 ÷ 4.30 × $214,200 = $89,665  ← S 最多
+L3  · A：1.00 ÷ 4.30 × $214,200 = $49,814
+<span class="fc">
+S 員工比 A 同職級多拿約 20%，差距清楚但不誇張
+最高 vs 最低差距：89,665 ÷ 49,814 = 1.8 倍</span></div>
+      </div>
     </div>
   </div>
 
-  <!-- 05 落地計劃 -->
-  <div class="section">
+  <!-- 05 試行期規劃 -->
+  <div class="sec">
     <div class="sec-label">
       <div class="sec-num">05</div>
-      <div class="sec-title">落地推進計劃</div>
+      <div class="sec-title">試行期規劃</div>
     </div>
 
-    <div class="callout amber">
-      <div class="callout-title">建議策略</div>
-      <p>先試跑 Layer 3 績效評定建立信任，再逐步啟動量化掛鉤，<strong>降低一次性全面上線的阻力</strong>。</p>
+    <div class="callout blue">
+      <div class="callout-title">試行策略</div>
+      首季以<strong>「建立習慣、確認指標可取得性」</strong>為主，第二季起正式計算獎金。留存率首季只建 baseline，不影響績效評定，降低員工焦慮感。
     </div>
 
-    <div>
+    <div class="card">
       <div class="tl-item">
         <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
         <div class="tl-body">
-          <div class="tl-phase">Phase 1 · 第 1 個月</div>
-          <h4>確認框架 &amp; 公開宣布</h4>
+          <div class="tl-phase">Month 1 · 本月</div>
+          <h4>建立 Baseline + 指標確認</h4>
           <ul>
-            <li>與 CEO 確認指標權重與基準獎金包</li>
-            <li>確認各組分享比例</li>
-            <li>全員公開宣布機制規則</li>
+            <li>VIP Team 計算本月 VIP 留存率（首次 baseline）</li>
+            <li>確認 level.upgraded 事件是否有等級前後屬性</li>
+            <li>開始月度績效評定（S/A/B/C），結果只做記錄</li>
           </ul>
         </div>
       </div>
       <div class="tl-item">
         <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
         <div class="tl-body">
-          <div class="tl-phase">Phase 2 · 第 2~3 個月</div>
-          <h4>試跑績效評定</h4>
+          <div class="tl-phase">Month 2</div>
+          <h4>試跑計算，不影響薪酬</h4>
           <ul>
-            <li>各組主管開始月度 S/A/B/C 評定</li>
-            <li>結果僅內部參考，不影響薪酬</li>
-            <li>收集員工回饋，調整指標設計</li>
+            <li>用真實數據套入公式，計算「如果今天是正式考核，大家各拿多少」</li>
+            <li>公開給組員看結果，收集回饋</li>
+            <li>確認留存率計算方式是否合理</li>
           </ul>
         </div>
       </div>
       <div class="tl-item">
         <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
         <div class="tl-body">
-          <div class="tl-phase">Phase 3 · 第 4 個月起</div>
-          <h4>全機制正式上線</h4>
+          <div class="tl-phase">Month 3</div>
+          <h4>正式上線，影響獎金</h4>
           <ul>
-            <li>獎金池與業績指標正式掛鉤</li>
-            <li>個人績效評定正式影響獎金計算</li>
-            <li>啟動即時專項獎金機制</li>
+            <li>三個指標全部正式納入考核</li>
+            <li>組績效係數正式影響獎金池</li>
+            <li>個人貢獻分正式影響個人分配</li>
           </ul>
         </div>
       </div>
       <div class="tl-item">
         <div class="tl-left"><div class="tl-dot"></div></div>
         <div class="tl-body">
-          <div class="tl-phase">Phase 4 · 年底</div>
-          <h4>年度核算 &amp; 優化</h4>
+          <div class="tl-phase">季末複盤</div>
+          <h4>效果評估 → 決定是否延續</h4>
           <ul>
-            <li>依全年業績計算部門獎金池</li>
-            <li>結算各組、個人最終獎金</li>
-            <li>複盤機制，調整下一年參數</li>
+            <li>三個指標是否都有改善？</li>
+            <li>員工對機制的信任度如何？</li>
+            <li>目標是否需要上調？</li>
+            <li>若效果好 → 延續並擴展至 CRM / Data Team</li>
           </ul>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- 06 風險與對策 -->
-  <div class="section">
+  <!-- 06 注意事項 -->
+  <div class="sec">
     <div class="sec-label">
       <div class="sec-num">06</div>
-      <div class="sec-title">潛在風險與對策</div>
+      <div class="sec-title">注意事項與限制</div>
     </div>
 
-    <div class="card">
-      <div class="risk-item">
-        <div class="risk-tag rh">高</div>
-        <div class="risk-body">
-          <h4>績效評定引發主觀爭議</h4>
-          <p>對策：主管評定須附具體事例，加入跨組 peer review（40%比例），避免純主觀判斷。</p>
-        </div>
+    <div class="callout red">
+      <div class="callout-title">⚠️ 指標取得風險</div>
+      level.upgraded 目前查詢無法確認是否為 Lv.1→Lv.10+ 的精確升級，先以總升級人數代替。建議 VIP Team 與數據組確認事件屬性，若可過濾則在 Month 2 更新指標定義。
+    </div>
+
+    <div class="two-col">
+      <div class="callout amber" style="margin-bottom:0;">
+        <div class="callout-title">目標調整彈性</div>
+        試行期目標並非一成不變。若 Month 2 發現目標明顯過高或過低，可由主管與組員共同協商調整，不需等到季末。
       </div>
-      <div class="risk-item">
-        <div class="risk-tag rh">高</div>
-        <div class="risk-body">
-          <h4>業績不佳時獎金縮水引發流失</h4>
-          <p>對策：設置獎金包下限（不低於基準包 70%），避免業績波動讓員工失去安全感。</p>
-        </div>
-      </div>
-      <div class="risk-item">
-        <div class="risk-tag rm">中</div>
-        <div class="risk-body">
-          <h4>Data Team 感覺被邊緣化</h4>
-          <p>對策：比例聯動確保 Data Team 隨業務成長，另設滿意度評分給予績效舞台。</p>
-        </div>
-      </div>
-      <div class="risk-item">
-        <div class="risk-tag rm">中</div>
-        <div class="risk-body">
-          <h4>指標被「玩弄」</h4>
-          <p>對策：優先使用後台真實數據（付費收入、留存率），避免容易操弄的中間過程指標。</p>
-        </div>
-      </div>
-      <div class="risk-item">
-        <div class="risk-tag rl">低</div>
-        <div class="risk-body">
-          <h4>機制複雜，員工看不懂</h4>
-          <p>對策：製作一頁式員工版說明，只寫「我能得多少、怎麼算」，複雜性由 HR 承擔。</p>
-        </div>
+      <div class="callout green" style="margin-bottom:0;">
+        <div class="callout-title">指標玩弄防護</div>
+        三個指標都從 Mixpanel 後台直接拉取，不依賴人工回報。Level.upgraded 是系統事件，留存率由月底系統快照計算，難以人為操弄。
       </div>
     </div>
   </div>
 
-  <!-- 07 待確認事項 -->
-  <div class="section">
-    <div class="sec-label">
-      <div class="sec-num">07</div>
-      <div class="sec-title">待 CEO 確認事項</div>
-    </div>
-
-    <div class="confirm-item">
-      <div class="ci-top">
-        <h4>① 兩個指標的權重</h4>
-        <span class="ci-scope">Layer 1</span>
-      </div>
-      <div class="ci-suggest">建議：<strong>付費收入 60% / 淨利率 40%</strong></div>
-    </div>
-    <div class="confirm-item">
-      <div class="ci-top">
-        <h4>② 基準獎金包金額</h4>
-        <span class="ci-scope">整體力度</span>
-      </div>
-      <div class="ci-suggest">建議：<strong>年薪 15~20% 為浮動部分起點</strong></div>
-    </div>
-    <div class="confirm-item">
-      <div class="ci-top">
-        <h4>③ 三組分享比例</h4>
-        <span class="ci-scope">Layer 2</span>
-      </div>
-      <div class="ci-suggest">建議：<strong>VIP 40% / CRM &amp; Campaign 40% / Data 20%</strong></div>
-    </div>
-    <div class="confirm-item">
-      <div class="ci-top">
-        <h4>④ 績效評定主管 vs peer 比例</h4>
-        <span class="ci-scope">Layer 3</span>
-      </div>
-      <div class="ci-suggest">建議：<strong>主管 60% / 跨組 peer 40%</strong></div>
-    </div>
-    <div class="confirm-item">
-      <div class="ci-top">
-        <h4>⑤ 獎金包下限設定</h4>
-        <span class="ci-scope">安全感</span>
-      </div>
-      <div class="ci-suggest">建議：<strong>不低於基準包 70%</strong></div>
-    </div>
-    <div class="confirm-item">
-      <div class="ci-top">
-        <h4>⑥ 淨利率目標值</h4>
-        <span class="ci-scope">Layer 1 計算</span>
-      </div>
-      <div class="ci-suggest">需 CEO 提供，否則達成率無法計算</div>
-    </div>
-    <div class="confirm-item">
-      <div class="ci-top">
-        <h4>⑦ 即時獎金審批權限</h4>
-        <span class="ci-scope">執行效率</span>
-      </div>
-      <div class="ci-suggest">建議：<strong>部門主管提案，CEO 核准</strong></div>
-    </div>
-  </div>
-
-  <!-- SUMMARY -->
+  <!-- Summary -->
   <div class="summary">
-    <h3>提案摘要</h3>
-    <div class="sum-row">
-      <div class="label">核心邏輯</div>
-      <div class="value">有業績才有獎金，增量越大分享越多</div>
-    </div>
-    <div class="sum-row">
-      <div class="label">Layer 1 指標</div>
-      <div class="value">付費收入增長率 60% + 淨利率達成率 40%</div>
-    </div>
-    <div class="sum-row">
-      <div class="label">Layer 2 分配</div>
-      <div class="value">VIP 40% / CRM &amp; Campaign 40% / Data 20%</div>
-    </div>
-    <div class="sum-row">
-      <div class="label">Layer 3 個人</div>
-      <div class="value">貢獻權重法，S×1.5 / A×1.0 / B×0.6 / C×0</div>
-    </div>
-    <div class="sum-row">
-      <div class="label">啟動方式</div>
-      <div class="value">先試跑績效評定，第 4 個月全面上線</div>
-    </div>
-    <div class="sum-row">
-      <div class="label">狀態</div>
-      <div class="value">Draft v1.3 — 待 CEO 確認 7 項參數</div>
+    <h3>試行方案摘要</h3>
+    <div class="sum-grid">
+      <div class="sum-row">
+        <div class="sum-label">適用團隊</div>
+        <div class="sum-value">VIP Team（無 L5，3 人）</div>
+      </div>
+      <div class="sum-row">
+        <div class="sum-label">核心指標</div>
+        <div class="sum-value">留存率 40% + 升級人數 35% + Lv.30+佔比 25%</div>
+      </div>
+      <div class="sum-row">
+        <div class="sum-label">升級目標</div>
+        <div class="sum-value">12,500 人/月（baseline ~11,000）</div>
+      </div>
+      <div class="sum-row">
+        <div class="sum-label">Lv.30+ 目標</div>
+        <div class="sum-value">4.0%（baseline 3.3%）</div>
+      </div>
+      <div class="sum-row">
+        <div class="sum-label">個人分配方式</div>
+        <div class="sum-value">貢獻權重法，L4=1.5 / L3.2=1.2 / L3=1.0</div>
+      </div>
+      <div class="sum-row">
+        <div class="sum-label">正式上線時間</div>
+        <div class="sum-value">Month 3（前兩月建 baseline + 試跑）</div>
+      </div>
+      <div class="sum-row">
+        <div class="sum-label">下一步決策點</div>
+        <div class="sum-value">季末複盤，決定是否延續並擴展至其他 Team</div>
+      </div>
     </div>
   </div>
 
